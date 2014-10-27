@@ -9,12 +9,15 @@ class Customer < ActiveRecord::Base
 
 before_save :encrypt_password
 
+
+
   def encrypt_password
     if password.present?
     self.password_salt = BCrypt::Engine.generate_salt
     self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)
     end
   end
+
   def self.authenticate(username,password)
     customer=find_by_username(username)
 
@@ -24,6 +27,26 @@ before_save :encrypt_password
          nil
        end
   end
+
+
+
+
+
+  def send_password_reset
+    generate_token(:password_reset_token)
+    self.password_reset_sent_at = Time.zone.now
+    save!
+    CustomerMailer.pw_change(self).deliver
+  end
+
+  def generate_token(column)
+    begin
+      self[column] = SecureRandom.urlsafe_base64
+    end while Customer.exists?(column => self[column])
+  end
+
+
+
 
   validates :username,presence: true, length: {in: 3..14,message: 'Username already exists'}, uniqueness: true,
              format: { with: /\A[a-zA-Z0-9]+\Z/, message: "allows only letters and number without any special characters and space" }

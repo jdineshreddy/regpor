@@ -7,5 +7,5 @@ class CustomersProfile < ActiveRecord::Base
   validates :gender, :presence => {message: ' :select your "GENDER"'}
   validates :mobile,presence: true,numericality: true, length: {minimum: 10, maximum: 10},
             format: {with: /\d{10}/}
-  validates :email,format: { with: /\A[^@\s]+@([^@.\s]+\.)*[^@.\s]+\z/ }
+  validates :email,uniqueness: true, format: { with: /\A[^@\s]+@([^@.\s]+\.)*[^@.\s]+\z/ }
 end

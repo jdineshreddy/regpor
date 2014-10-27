@@ -33,30 +33,47 @@ class LoginsController < ApplicationController
   end
 
   def forgot
-    user=Customer.find_by_username(params[:username])
+    user=CustomersProfile.find_by_email(params[:email])
     if user
-      session[:user_name]=user.username
-      flash[:notice]='username exists'
-      render "password_change"
-    else
-      flash[:notice]='Invalid Username'
+      Customer.send_password_reset
+
+      #sessions[:user_id] =user.customer_id
+      #@email=user.email
+      #CustomerMailer.pw_change(@email).deliver
+      flash[:notice]='Password sent to your Email'
       redirect_to :action => 'new'
+      #render "password_change"
+    else
+      flash[:notice]="Email does'nt exists"
+      redirect_to :back
     end
   end
 
   def password_change
-
+    @user = Customer.find_by_password_reset_token!(params[:id])
   end
 
   def update
-   cus=Customer.find_by_username(session[:user_name])
-    if cus && cus.update(password: params[:password], password_confirmation: params[:password_confirmation])
-      flash[:notice]='Password Changed'
-      redirect_to :action => 'new'
+
+    @user = Customer.find_by_password_reset_token!(params[:id])
+    if @user.password_reset_sent_at < 2.hours.ago
+      redirect_to logins_forgot_path, :alert => "Password reset has expired."
+    elsif @user.update_attributes(params[:user])
+      redirect_to log_in_path, :notice => "Password has been reset!"
     else
-      flash[:error]='password and connformation password should be same or password length is 6 to 14 characters'
-      redirect_to :back
+      render :password_change
     end
+
+   #cus=Customer.find_by(session[:userid])
+
+
+    #if cus && cus.update(password: params[:password], password_confirmation: params[:password_confirmation])
+    #  flash[:notice]='Password Changed'
+    #  redirect_to :action => 'new'
+    #else
+     # flash[:error]='password and connformation password should be same or password length is 6 to 14 characters'
+      #redirect_to :back
+    #end
   end
 
   def deactivate

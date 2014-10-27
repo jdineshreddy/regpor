@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get 'posts', to: 'posts#index', :as => 'posts_list'
   get '/posts', to: 'posts#popup', :as => 'post_popup'
   get '/logins/forgot_password', to: 'logins#forgot_password', :as => 'forgot_password'
-  get '/logins/forgot', to: 'logins#forgot'
+  post '/logins/forgot', to: 'logins#forgot'
   get '/logins/password_change', to: 'logins#password_change'
   get '/logins/update', to: 'logins#update'
   put '/logins/proupdate', to: 'logins#proupdate'
