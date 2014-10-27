@@ -8,6 +8,6 @@ class CustomerMailer < ActionMailer::Base
   end
   def pw_change(cus_email)
     @user=cus_email
-      mail(to: cus_email, subject: "Password")
+      mail(to: cus_email.email, subject: "Password")
   end
 end

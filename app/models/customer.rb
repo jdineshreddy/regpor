@@ -29,26 +29,6 @@ before_save :encrypt_password
   end
 
 
-
-
-
-  def send_password_reset
-    generate_token(:password_reset_token)
-
-    self.password_reset_sent_at = Time.zone.now
-    save!
-    CustomerMailer.pw_change(self).deliver
-  end
-
-  def generate_token(column)
-    begin
-      self[column] = SecureRandom.urlsafe_base64
-    end while Customer.exists?(column => self[column])
-  end
-
-
-
-
   validates :username,presence: true, length: {in: 3..14,message: 'Username already exists'}, uniqueness: true,
              format: { with: /\A[a-zA-Z0-9]+\Z/, message: "allows only letters and number without any special characters and space" }
   validates :password, confirmation: true,length: {in: 6..14,message: 'atleast 6 characters'}

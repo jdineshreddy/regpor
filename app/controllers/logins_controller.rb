@@ -35,7 +35,7 @@ class LoginsController < ApplicationController
   def forgot
     user=CustomersProfile.find_by_email(params[:email])
     if user
-      Customer.send_password_reset
+      CustomersProfile.send_password_reset
 
       #sessions[:user_id] =user.customer_id
       #@email=user.email
