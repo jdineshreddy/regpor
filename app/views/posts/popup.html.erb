@@ -1,0 +1,9 @@
+
+<% if flash[:error] %>
+    <p id="notice" ><%= flash[:error] %></p>
+<% end %>
+
+
+<%= link_to 'SIGNUP', new_customer_path %> &nbsp; &nbsp;
+<%= link_to 'Login', log_in_path%>  &nbsp; &nbsp;
+<%= link_to 'Back', posts_list_path%>

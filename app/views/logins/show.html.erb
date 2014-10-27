@@ -1,0 +1,17 @@
+<% if flash[:notice] %>
+    <div class="'notice"><%=flash[:notice]%></div>
+<% end%>
+<br>
+<table width = 95% border="0">
+<tr>
+  <td> <strong> WELCOME : </strong> <%= @customer.fname.camelize %> <%= @customer.lname.camelize %></td>
+   <td align="right" width="0"><%= link_to 'Profile', customers_profile_path %> &nbsp;<%= link_to 'Log out', '/logout', {:method => 'delete'}%></td>
+</tr>
+</table>
+<br>
+<%# link_to "Post here", new_posts_path %>
+&nbsp;
+<%= link_to "Post list", posts_list_path %>
+
+&nbsp;
+

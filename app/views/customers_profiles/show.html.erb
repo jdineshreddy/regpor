@@ -1,0 +1,68 @@
+<% if flash[:notice] %>
+    <div class="'notice"><%=flash[:notice]%></div>
+<% end%>
+
+<br>
+<table border="0" style="border: 1px solid #2E2F30" cellpadding="5"  cellspacing="12">
+  <tr>
+    <td>First Name :</td>
+    <td style="border:2px solid #BBBBBB"><%= @customers_profile.fname %> &nbsp; &nbsp; </td>
+  </tr>
+
+  <tr>
+    <td>Last Name :</td>
+    <td style="border:2px solid #BBBBBB"><%= @customers_profile.lname %> &nbsp; &nbsp; </td>
+  </tr>
+  <tr>
+    <td colspan="2"></td>
+  </tr>
+  <tr>
+    <td>Date of Birth :</td>
+    <td style="border:2px solid #BBBBBB"><%= @customers_profile.dob %> &nbsp; &nbsp; </td>
+  </tr>
+
+  <tr>
+    <td>Gender :</td>
+    <td style="border:2px solid #BBBBBB"><%= @customers_profile.gender %> &nbsp; &nbsp; </td>
+  </tr>
+
+  <tr>
+    <td>Mobile :</td>
+    <td style="border:2px solid #BBBBBB"><%= @customers_profile.mobile %> &nbsp; &nbsp; </td>
+  </tr>
+  <tr>
+
+  <tr>
+    <td>Email :</td>
+    <td style="border:2px solid #BBBBBB"><%= @customers_profile.email %> &nbsp; &nbsp; </td>
+  </tr>
+
+
+  <tr>
+    <td>Address :</td>
+    <td style="border:2px solid #BBBBBB"><%= @customers_profile.address %> &nbsp; &nbsp; </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><%= link_to "Edit", edit_customers_profiles_path(session[:customer_id])%></td>
+  </tr>
+
+
+</table>
+<br>
+<table  border="0" style="border: 1px solid #2E2F30" cellpadding="4"  cellspacing="4">
+  <tr>
+    <td><%= link_to "Change Password",logins_password_change_path%></td>
+  </tr>
+</table>
+<br>
+<table  border="0" style="border: 1px solid #2E2F30" cellpadding="4"  cellspacing="4">
+  <tr>
+    <td><%= link_to "Deactivate",deactivate_customer_path(session[:customer_id])%></td>
+  </tr>
+</table>
+
+
+<br>
+
+<%= link_to "Back",  logins_show_path%>

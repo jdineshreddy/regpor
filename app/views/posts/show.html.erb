@@ -1,0 +1,17 @@
+<div>
+
+  <fieldset>
+    <%= @post.customers_posts %>
+  </fieldset>
+  by <i> <%= @post.customer.username%> </i>&nbsp; &nbsp;at  <%=@post.created_at%>
+      <br>
+
+</div>
+
+
+
+<br>
+<br>
+<%= link_to "My Home Page", login_show_path%>
+
+

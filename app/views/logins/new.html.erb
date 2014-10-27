@@ -1,0 +1,32 @@
+<div class="regpot_form">
+<% if flash[:error] %>
+      <p id="notice" ><%= flash[:error] %></p>
+  <% end %>
+  <% if flash[:notice] %>
+      <p id="notice" ><%= flash[:notice] %></p>
+  <% end %>
+
+<% if session[:customer_id].nil? %>
+  <%= form_tag create_login_path do %>
+      <fieldset>
+        <legend>Please Log In</legend>
+        <div >
+          <label for="username" >Username:</label><br>
+          <%= text_field_tag :username, params[:username] %>
+        </div>
+        <div>
+          <label for="password" >Password:</label><br>
+          <%= password_field_tag :password, params[:password] %>
+        </div>
+        <div>
+          <%= submit_tag "Login" %> &nbsp;
+          <%= link_to 'Forgot Password',  forgot_password_path%>
+        </div>
+      </fieldset>
+  <% end %>
+<%= link_to 'Home', customers_path  %>
+      <% else %>
+  <%= link_to 'Home', login_path(session[:customer_id]) %>
+<% end %>
+
+</div>

@@ -1,0 +1,22 @@
+<h1>Registration Portal </h1>
+
+
+<% if session[:customer_id].nil? %>
+<%= link_to 'SIGNUP', new_customer_path %> &nbsp; &nbsp;
+<% end %>
+
+
+<%= link_to "Posts LIst", posts_list_path%>&nbsp;&nbsp;&nbsp;
+
+
+<% if session[:customer_id].nil? %>
+<%= link_to 'Login', log_in_path%><br>
+    <% else %>
+    <%= link_to "Home", logins_show_path %>
+<% end %>
+
+
+
+
+
+

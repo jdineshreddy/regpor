@@ -1,0 +1,30 @@
+
+
+
+  <% @posts.each do |p| %> <br>
+ <table border="1" width="50%" cellpadding="5" cellspacing="8">
+    <tr>
+      <td style="border: 0px">  <%= p.customers_posts %></td>
+      <% if session[:customer_id]==p.customer_id %>
+      <td style="width: 10%" > <%= link_to "Delete", posts_delete_path(p.id)%> </td>
+      <% end %>
+    </tr>
+ </table>
+      &nbsp; &nbsp;
+      by <i style="color: #1d2fe2" > <%= p.customer.username%> </i>&nbsp; &nbsp;on <i style="color: #1d2fe2"> <%=p.created_at.strftime("%d %b. %Y")%> </i>&nbsp;
+      at <i style="color: #1d2fe2"> <%=  p.created_at.in_time_zone("Chennai").strftime("%H:%M:%S") %></i>
+<br>
+  <%end%>
+<br>
+
+
+<%= link_to 'Post here', new_posts_path %> &nbsp;
+
+
+<% if session[:customer_id].nil? %>
+ <%= link_to "back", customers_path%>
+    <% else%>
+    <%= link_to "Home", logins_show_path %>
+<%end %>
+
+

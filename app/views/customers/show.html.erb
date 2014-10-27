@@ -1,0 +1,13 @@
+<% if flash[:notice] %>
+    <div class="'notice"><%=flash[:notice]%></div>
+<% end%>
+<br>
+
+<strong>USERNAME : &nbsp;  <strong style="color: #e21619"><%= @customer.username %></strong> </strong>
+
+<br>
+<br>
+<%= link_to 'Home', customers_path %>&nbsp;&nbsp;
+ <%= link_to 'login', log_in_path %>
+
+
