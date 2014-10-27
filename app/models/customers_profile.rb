@@ -12,7 +12,7 @@ class CustomersProfile < ActiveRecord::Base
   def generate_token(column)
     begin
       self[column] = SecureRandom.urlsafe_base64
-    end while Customer.exists?(column => self[column])
+    end while CustomersProfile.exists?(column => self[column])
   end
 
 

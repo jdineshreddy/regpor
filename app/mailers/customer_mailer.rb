@@ -6,8 +6,12 @@ class CustomerMailer < ActionMailer::Base
       attachments['bird.jpg'] = File.read('app/assets/images/bird.jpg')
       mail(to: @user.email, subject: 'Registration Portal')
   end
-  def pw_change(cus_email)
-    @user=cus_email
-      mail(to: cus_email.email, subject: "Password")
+
+
+  def pw_change(user)
+    @user = user
+    mail :to => user.email, :subject => "Password Reset"
   end
+
+
 end

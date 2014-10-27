@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'password_resets/new'
+
   get '/Customers_List', to: "customers#list", as:"customers_list"
   get "/logins/new" => "logins#new", :as => "log_in"
   post "logins" => "logins#create", :as => "create_login"
@@ -23,6 +25,7 @@ Rails.application.routes.draw do
   resources :logins
   resource  :posts
   resource :customers_profiles
+  resources :password_resets
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
