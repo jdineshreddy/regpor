@@ -7,7 +7,7 @@ class CustomerMailer < ActionMailer::Base
       mail(to: @user.email, subject: 'Registration Portal')
   end
   def pw_change(cus_email)
-    @url= 'http://localhost:3000/logins/password_change'
+    @user=cus_email
       mail(to: cus_email, subject: "Password")
   end
 end
