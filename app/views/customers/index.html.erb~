@@ -1,5 +1,0 @@
-<h1>Registration Portal </h1>
-
-
-
-<%= link_to 'New User', new_customer_path %>
