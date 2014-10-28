@@ -10,9 +10,12 @@ Rails.application.routes.draw do
   get 'posts', to: 'posts#index', :as => 'posts_list'
   get '/posts', to: 'posts#popup', :as => 'post_popup'
   get '/logins/forgot_password', to: 'logins#forgot_password', :as => 'forgot_password'
-  post '/logins/forgot', to: 'logins#forgot'
-  get '/logins/password_change', to: 'logins#password_change'
-  get '/logins/update', to: 'logins#update'
+  #post '/logins/forgot', to: 'logins#forgot'
+  match '/logins/forgot', to: 'logins#forgot', via: [:get, :post]
+  get '/logins/psword_change_for_login_customer', to: 'logins#psword_change_for_login_customer'
+  put '/logins/pd_update_for_login_customers', to: 'logins#pd_update_for_login_customers'
+  get '/logins/password_change/:id', to: 'logins#password_change', :as => "password_change"
+  patch '/logins/update/:id', to: 'logins#update', :as => 'logins_update'
   put '/logins/proupdate', to: 'logins#proupdate'
   get 'posts:id', to: 'posts#destroy', :as => 'posts_delete'
   get '/customers_profiles', to: 'customers_profiles#show', :as => 'customers_profile'

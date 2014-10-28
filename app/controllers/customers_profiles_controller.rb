@@ -8,7 +8,7 @@ class CustomersProfilesController < ApplicationController
 
 
   def show
-
+    @customer=Customer.find_by(session[:customer_id])
   end
 
   def edit

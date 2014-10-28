@@ -2,8 +2,8 @@
     <div class="'notice"><%=flash[:notice]%></div>
 <% end%>
 
-<br>
-<table border="0" style="border: 1px solid #2E2F30" cellpadding="5"  cellspacing="12">
+<table border="0" style="border: 1px solid #2E2F30" cellpadding="5"  cellspacing="7">
+  <h3 style="color: #e23624">Customer Profile</h3>
   <tr>
     <td>First Name :</td>
     <td style="border:2px solid #BBBBBB"><%= @customers_profile.fname %> &nbsp; &nbsp; </td>
@@ -31,7 +31,6 @@
     <td style="border:2px solid #BBBBBB"><%= @customers_profile.mobile %> &nbsp; &nbsp; </td>
   </tr>
   <tr>
-
   <tr>
     <td>Address :</td>
     <td style="border:2px solid #BBBBBB"><%= @customers_profile.address %> &nbsp; &nbsp; </td>
@@ -46,7 +45,7 @@
 <br>
 <table  border="0" style="border: 1px solid #2E2F30" cellpadding="4"  cellspacing="4">
   <tr>
-    <td><%= link_to "Change Password",logins_password_change_path%></td>
+    <td><%= link_to "Change Password",logins_psword_change_for_login_customer_path%></td>
   </tr>
 </table>
 <br>

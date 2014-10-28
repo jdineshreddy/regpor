@@ -57,17 +57,22 @@ class LoginsController < ApplicationController
     else
       render :password_change
     end
+  end
 
-   #cus=Customer.find_by(session[:userid])
+  def psword_change_for_login_customer
 
+  end
 
-    #if cus && cus.update(password: params[:password], password_confirmation: params[:password_confirmation])
-    #  flash[:notice]='Password Changed'
-    #  redirect_to :action => 'new'
-    #else
-     # flash[:error]='password and connformation password should be same or password length is 6 to 14 characters'
-      #redirect_to :back
-    #end
+  def pd_update_for_login_customers
+    cus=Customer.find_by(session[:userid])
+    if cus && cus.update(password: params[:password], password_confirmation: params[:password_confirmation])
+      flash[:notice]='Password Changed'
+      redirect_to :action => 'new'
+    else
+     flash[:error]='password and connformation password should be same or password length is 6 to 14 characters'
+    redirect_to :back
+    end
+
   end
 
   def deactivate
