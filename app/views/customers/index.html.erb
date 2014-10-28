@@ -1,22 +1,40 @@
-<h1>Registration Portal </h1>
+<html>
+<body>
+<style>
 
+  a {
+      text-decoration: none;
+      color: #ff1917;
+  }
+  body {
+      background-image: url('/assets/ideapic.gif');
+      background-repeat: no-repeat;
+      background-size: 100%;
+     -
+  }
+</style>
+</body>
 
-<% if session[:customer_id].nil? %>
-<%= link_to 'SIGNUP', new_customer_path %> &nbsp; &nbsp;
-<% end %>
+<head>
+ <table width="100%">
 
+   <tr>
+     <td width="300"><h1 style="background: darkcyan; color: #fff643"   > &nbsp; ideas point &nbsp;</h1></td>
+     <% if session[:customer_id].nil? %>
+         <td align="right" width="0" > <%= link_to 'Signup', new_customer_path %> &nbsp;
+           <%= link_to 'Login', log_in_path%><br></td>
+     <% else %>
+         <%= link_to "Home", logins_show_path %>
+     <% end %>
+   </tr>
+   <tr>
+     <td><h2><%= link_to "Ideas ", posts_list_path%></h2></td>
+   </tr>
 
-<%= link_to "Posts LIst", posts_list_path%>&nbsp;&nbsp;&nbsp;
+ </table>
 
+</head>
 
-<% if session[:customer_id].nil? %>
-<%= link_to 'Login', log_in_path%><br>
-    <% else %>
-    <%= link_to "Home", logins_show_path %>
-<% end %>
-
-
-
-
+</html>
 
 
