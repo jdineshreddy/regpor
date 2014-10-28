@@ -11,14 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141027121938) do
+ActiveRecord::Schema.define(version: 20141028052841) do
 
   create_table "customers", force: true do |t|
     t.string   "username"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string   "email"
     t.string   "password_hash"
     t.string   "password_salt"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "password_reset_token"
+    t.datetime "password_reset_sent_at"
   end
 
   create_table "customers_profiles", force: true do |t|
@@ -29,11 +32,8 @@ ActiveRecord::Schema.define(version: 20141027121938) do
     t.date     "dob"
     t.string   "gender"
     t.string   "mobile"
-    t.string   "email"
     t.text     "address"
     t.integer  "customer_id"
-    t.string   "password_reset_token"
-    t.datetime "password_reset_sent_at"
   end
 
   create_table "posts", force: true do |t|

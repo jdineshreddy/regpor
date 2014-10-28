@@ -1,19 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  fname: MyString
-  lname: MyString
   username: MyString
-  password: MyString
-  dob: 2014-10-08
-  gender: MyString
-  mobile: 1
+  email: MyString
+  password_hash: MyString
+  password_salt: MyString
 
 two:
-  fname: MyString
-  lname: MyString
   username: MyString
-  password: MyString
-  dob: 2014-10-08
-  gender: MyString
-  mobile: 1
+  email: MyString
+  password_hash: MyString
+  password_salt: MyString
