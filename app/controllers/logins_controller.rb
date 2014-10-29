@@ -16,7 +16,11 @@ class LoginsController < ApplicationController
 
 
   def show
+     if session[:customer_id].nil?
+      render "new"
+    else
     @customer = CustomersProfile.find_by_customer_id( session[:customer_id])
+     end
   end
 
 
@@ -24,7 +28,7 @@ class LoginsController < ApplicationController
 
   def destroy
     session[:customer_id] = nil
-    flash[:notice]="successfully logged out"
+    flash[:notice]="Successfully logged out"
     redirect_to :action => 'new'
   end
 

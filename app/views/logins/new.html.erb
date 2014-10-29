@@ -4,32 +4,41 @@
         text-decoration: none;
         color: blue;
     }
+
+    input {
+        height: 30px;
+        font-size: 21px;
+    }
 </style>
+<% if flash[:notice] %>
+     <p style="color: green; font-size: 20px" ><%= flash[:notice] %> </p>
+<% end %>
 
 <div class="regpot_form">
-<% if flash[:error] %>
-      <p id="notice" ><%= flash[:error] %></p>
-  <% end %>
-  <% if flash[:notice] %>
-      <p id="notice" ><%= flash[:notice] %></p>
-  <% end %>
-
 <% if session[:customer_id].nil? %>
   <%= form_tag create_login_path do %>
-      <table style="border: 2px solid #080103; margin:10px auto;" cellpadding="15" cellspacing="3">
-        <p style="color: rgba(25, 10, 13, 0.77); margin-top: 200px;"  align="center">Sign in to continue</p>
+      <table style="border: 2px solid rgba(22, 12, 22, 0.33); margin:10px auto;" cellpadding="8" cellspacing="5">
+
+        <p style="color: rgba(25, 10, 13, 0.77); margin-top: 200px;  font-size: 25px"  align="center">Sign in to continue</p>
+      <tr>
+        <% if flash[:error] %>
+
+          <td style="color: red">  <%= flash[:error] %></td>
+        <% end %>
+        </p>
+      </tr>
         <tr>
-          <td><label for="username" >Username:</label><br></td>
-          <td><%= text_field_tag :username, params[:username] %></td>
+
+          <td><%= text_field_tag :username, params[:username], placeholder: 'Username' %></td>
         </tr>
         <tr>
-          <td><label for="password" >Password:</label><br></td>
-          <td><%= password_field_tag :password, params[:password] %></td>
+
+          <td><%= password_field_tag :password, params[:password],placeholder: 'Password' %></td>
         </tr>
         <tr>
-          <td></td>
-          <td><%= submit_tag "Login" %> &nbsp;
-          <%= link_to 'Forgot Password',  forgot_password_path%></td>
+
+          <td style="font-size: 20px"><%= submit_tag "Login" %> &nbsp;
+          <%= link_to 'Forgot Password',  forgot_password_path%> </td>
           </tr>
 
       </table>
