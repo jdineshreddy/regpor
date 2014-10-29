@@ -5,6 +5,7 @@ capybara-*.html
 /tmp
 /db/*.mysql2
 /public/system
+/config/**
 /coverage/
 /spec/tmp
 **.orig
@@ -29,3 +30,4 @@ config/secrets.yml
 /vendor/assets/bower_components
 *.bowerrc
 bower.json
+

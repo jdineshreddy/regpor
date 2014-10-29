@@ -49,14 +49,18 @@ class LoginsController < ApplicationController
   end
 
   def password_change
-    @user = Customer.find_by_password_reset_token!(params[:id])
+    if Customer.where(password_reset_token: params[:id]).exists?(conditions = :none)
+      @user = Customer.find_by_password_reset_token!(params[:id])
+    else
+    flash[:notice]='Password already changed'
+    render 'new'
+    end
   end
 
   def update
     @user = Customer.find_by_password_reset_token!(params[:id])
-    if @user.password_reset_sent_at < 2.hours.ago
-      redirect_to logins_forgot_path, :alert => "Password reset has expired."
-    elsif @user.update(password: params[:password], password_confirmation: params[:password_confirmation])
+    if @user.update(password: params[:password], password_confirmation: params[:password_confirmation])
+      @user.update(password_reset_token: nil)
       redirect_to log_in_path, :notice => "Password has been reset!"
     else
       render :password_change

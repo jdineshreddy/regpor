@@ -44,7 +44,7 @@
       </table>
 <% end %>
 <p align="center">
-      <%= link_to 'Home', customers_path  %>
+      <%= link_to image_tag("home.png", :border => 0, size: "60x50"), customers_path  %>
   <% else %>
       <%= link_to 'Home', login_path(session[:customer_id]) %>
   <% end %>

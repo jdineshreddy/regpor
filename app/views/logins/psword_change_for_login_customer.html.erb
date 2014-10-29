@@ -5,7 +5,7 @@
 <%= form_tag({controller: "logins", action: "pd_update_for_login_customers"}, method: "put")  do %>
     <h3 style="color: #e21c26"> Change your password</h3>
     <table border="0" style="border: 1px solid #2E2F30" cellpadding="7"  cellspacing="0">
-      
+
       <tr>
         <td width="160"><%= label_tag(:password , 'New Password')%></td>
         <td><%= password_field_tag(:password) %></td>
