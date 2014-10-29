@@ -5,7 +5,7 @@ capybara-*.html
 /tmp
 /db/*.mysql2
 /public/system
-/config/environments/development.rb
+/config/environments/production.rb
 /coverage/
 /spec/tmp
 **.orig
