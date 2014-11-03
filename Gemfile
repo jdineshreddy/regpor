@@ -31,6 +31,12 @@ gem 'spring',        group: :development
 gem 'byebug'
 
 
+gem 'carmen-rails', '~> 1.0.0', github: 'jim/carmen-rails'
+
+
+gem 'countries'
+gem 'country_select'
+
 
 
 # Use ActiveModel has_secure_password

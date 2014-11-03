@@ -8,7 +8,7 @@ class CustomersProfilesController < ApplicationController
 
 
   def show
-    @customer=Customer.find_by(session[:customer_id])
+
   end
 
   def edit
@@ -16,7 +16,6 @@ class CustomersProfilesController < ApplicationController
   end
 
   def update
-
     if @customers_profile.update(customers_profile_params)
       flash[:notice]="Upadated"
       redirect_to @customers_profile
@@ -25,8 +24,14 @@ class CustomersProfilesController < ApplicationController
       redirect_to :back
     end
 
-
   end
+
+
+
+  def subregion_options
+    render partial: 'subregion_select'
+  end
+
 
   private
   def set_customers_profile
@@ -34,7 +39,7 @@ class CustomersProfilesController < ApplicationController
   end
 
   def customers_profile_params
-    params.require(:customers_profile).permit(:fname, :lname, :email, :dob, :mobile, :address, :gender)
+    params.require(:customers_profile).permit(:fname, :lname, :email, :dob, :mobile, :address,:country, :state, :gender)
   end
 
 end

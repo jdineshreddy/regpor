@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141029112355) do
+ActiveRecord::Schema.define(version: 20141103053143) do
+
+  create_table "countries_lists", force: true do |t|
+    t.string   "country_name"
+    t.string   "country_abbrev"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "customers", force: true do |t|
     t.string   "username"
@@ -33,6 +40,8 @@ ActiveRecord::Schema.define(version: 20141029112355) do
     t.string   "mobile"
     t.text     "address"
     t.integer  "customer_id"
+    t.string   "country"
+    t.string   "state"
   end
 
   create_table "posts", force: true do |t|
@@ -40,6 +49,14 @@ ActiveRecord::Schema.define(version: 20141029112355) do
     t.datetime "updated_at"
     t.integer  "customer_id"
     t.text     "customers_posts"
+  end
+
+  create_table "state_lists", force: true do |t|
+    t.string   "state_name"
+    t.string   "state_abbrev"
+    t.integer  "country_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

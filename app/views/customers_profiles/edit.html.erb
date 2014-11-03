@@ -1,4 +1,5 @@
-<%= form_for(@customers_profile) do |f| %>
+<%= form_for(@customers_profile)  do |f| %>
+
 
     <% if @customers_profile.errors.any? %>
         <div id="error_explanation">
@@ -14,34 +15,50 @@
   <h3 style="color: #1c5fe2">Update customer profile</h3>
   <table border="0" style="border: 1px solid #2E2F30" cellpadding="5"  cellspacing="5">
     <tr>
-      <td><%= f.label :fname %><br></td>
+      <td><%= f.label :fname %></td>
       <td><%= f.text_field :fname %></td>
     </tr>
+
     <tr>
-      <td><%= f.label :lname %><br></td>
+      <td><%= f.label :lname %></td>
       <td> <%= f.text_field :lname %></td>
     </tr>
+
     <tr>
-      <td><%= f.label :dob %><br></td>
+      <td><%= f.label :dob %></td>
       <td> <%= f.date_select :dob %></td>
     </tr>
+
     <tr>
-      <td><%= f.label :mobile  %><br></td>
+      <td><%= f.label :mobile  %></td>
       <td> <%= f.text_field :mobile %></td>
     </tr>
+
     <tr>
-      <td><%= f.label :address %><br></td>
-      <td> <%= f.text_area :address %></td>
-    </tr>
-    <tr>
-      <td><%= f.label :gender %><br></td>
+      <td><%= f.label :gender %></td>
       <td> <%= f.text_field :gender %></td>
     </tr>
+
+   <tr>
+     <td> <%= f.label :country %></td>
+     <td><%= f.country_select  :country, prompt: 'Please select a country' %></td>
+   </tr>
+
+    <tr>
+      <td><%= f.label :state %></td>
+      <td><%=  render partial: 'subregion_select', locals: {parent_region: f.object.country} %></td>
+    </tr>
+
+    <tr>
+      <td><%= f.label :address %></td>
+      <td> <%= f.text_area :address %></td>
+    </tr>
+
     <tr>
        <td></td>
        <td><%= f.submit %></td>
     </tr>
    </table>
-    <br>
-    <%= link_to "Back"%>
 <% end %>
+<br>
+<%= link_to "Back", customers_profile_path%>

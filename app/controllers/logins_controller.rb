@@ -88,7 +88,7 @@ class LoginsController < ApplicationController
     @customer=Customer.find(params[:id])
     @customerprofle=CustomersProfile.find_by_customer_id( params[:id])
     @customer.destroy
-    @customerprofle.destroyex
+    @customerprofle.destroy
     session[:customer_id] = nil
     flash[:notice]='Account Deactivated'
     redirect_to :action => 'new'
