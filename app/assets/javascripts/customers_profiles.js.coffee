@@ -5,13 +5,12 @@
 
 
 $ ->
-  $("select#customers_profile_country").change  ->
+  $("select#customers_profile_country").change ->
     select_wrapper = $("#customers_profile_state_wrapper")
 
     $("select", select_wrapper).attr("disabled", true)
 
     country = $(this).val()
-    alert(country)
     url = "/customers_profiles/subregion_options?parent_region=#{country}"
     select_wrapper.load(url)
 

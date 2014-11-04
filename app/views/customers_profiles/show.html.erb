@@ -33,18 +33,30 @@
 
                <%# changing country code to country name %>
                <% country = Carmen::Country.coded(@customers_profile.country) %>
-<% byebug %>
-  <tr>
-    <td>Country :</td>
-    <td style="border:2px solid #BBBBBB"><%= country.name %> &nbsp; &nbsp; </td>
-  </tr>
 
-                
+  <% if country.nil? %>
+      <tr>
+        <td>Country :</td>
+        <td style="border:2px solid #BBBBBB"><%= @customers_profile.country %> &nbsp; &nbsp; </td>
+      </tr>
+      <tr>
+        <td>State :</td>
+        <td style="border:2px solid #BBBBBB"><%= @customers_profile.state %> &nbsp; &nbsp; </td>
+      </tr>
+ <% else %>
+      <tr>
+        <td>Country :</td>
+        <td style="border:2px solid #BBBBBB"><%= country.name %> &nbsp; &nbsp; </td>
+      </tr>
+      <%# changing state code to state name %>
+      <% state = country.subregions.coded(@customers_profile.state) %>
+      <tr>
+        <td>State :</td>
+        <td style="border:2px solid #BBBBBB"><%= state.name %> &nbsp; &nbsp; </td>
+      </tr>
+<% end %>
 
-  <tr>
-    <td>State :</td>
-    <td style="border:2px solid #BBBBBB"><%= @customers_profile.state %> &nbsp; &nbsp; </td>
-  </tr>
+
     <td>Address :</td>
     <td style="border:2px solid #BBBBBB"><%= @customers_profile.address %> &nbsp; &nbsp; </td>
   </tr>
