@@ -11,4 +11,13 @@ class CustomersProfile < ActiveRecord::Base
   validates :mobile,presence: true,numericality: true, length: {minimum: 10, maximum: 10},
             format: {with: /\d{10}/}
 
+
+
+  def self.search(query)
+    if query
+      where('fname LIKE  ? OR lname LIKE?', "%#{query}%", "%#{query}%")
+    else
+      all
+    end
+  end
 end

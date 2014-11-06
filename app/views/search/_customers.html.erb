@@ -1,0 +1,12 @@
+<% if customers.blank? %>
+    <tr>
+      <td colspan="2">No resuts</td>
+    </tr>
+<% else %>
+    <% customers.each do |customer_profile| %>
+        <tr>
+          <td><%= customer_profile.fname  %></td>
+          <td><%= customer_profile.lname  %></td>
+        </tr>
+    <% end %>
+<% end %>

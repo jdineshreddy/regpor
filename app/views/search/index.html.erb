@@ -1,0 +1,38 @@
+
+<%= form_tag search_index_path,:method => 'get',  :id => "customers_profiles_search" do %>
+    <p>
+      <%= text_field_tag :query, params[:query],placeholder: 'Firsh Name or Last Name', id: 'query' %>
+      <%= submit_tag "Search", :fname => nil%>
+    </p>
+<% end %>
+
+
+<table>
+  <thead>
+  <tr>
+    <td><b>Fname</b></td>
+    <td><b>Lname</b></td>
+  </thead>
+  <br>
+  <tbody id="list_of_customers">
+  <%= render 'customers',customers: @customers %>
+  </tbody>
+</table>
+
+<br>
+<%= link_to "Back" , logins_show_path %>
+
+
+
+<script type="text/javascript">
+    $('#customers_profiles_search').submit(function (e){
+        e.preventDefault()
+        action = $(this).attr('action');
+        query = $('#query').val()
+        $.ajax({
+            url: action,
+            type: 'GET',
+            data: {query: query}
+        });
+    })
+</script>
