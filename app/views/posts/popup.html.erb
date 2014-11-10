@@ -1,6 +1,7 @@
 
 <% if flash[:error] %>
-    <p id="notice" ><%= flash[:error] %></p>
+    <p id="notice" style="color: red" ><%= flash[:error] %></p>
+    <% flash[:error]=nil %>
 <% end %>
 
 

@@ -1,30 +1,38 @@
-
-
-
-  <% @posts.each do |p| %> <br>
- <table border="1" width="50%" cellpadding="5" cellspacing="8">
-    <tr>
-      <td style="border: 0px">  <%= p.customers_posts %></td>
-      <% if session[:customer_id]==p.customer_id %>
-      <td style="width: 10%" > <%= link_to "Delete", posts_delete_path(p.id)%> </td>
-      <% end %>
-    </tr>
- </table>
-      &nbsp; &nbsp;
-      by <i style="color: #1d2fe2" > <%= p.customer.username%> </i>&nbsp; &nbsp;on <i style="color: #1d2fe2"> <%=p.created_at.strftime("%d %b. %Y")%> </i>&nbsp;
-      at <i style="color: #1d2fe2"> <%=  p.created_at.in_time_zone("Chennai").strftime("%H:%M:%S") %></i>
-<br>
-  <%end%>
-<br>
-
-
-<%= link_to 'Post here', new_posts_path %> &nbsp;
-
-
 <% if session[:customer_id].nil? %>
- <%= link_to "back", customers_path%>
-    <% else%>
-    <%= link_to "Home", logins_show_path %>
+    <%= link_to image_tag("h.jpg",  size: "80x80" ), customers_path %>
+<% else%>
+    <%= link_to image_tag("h.jpg",  size: "80x80" ), logins_show_path  %>
 <%end %>
 
+<div id="posts">
+  <% if flash[:notice] %>
+      <p style="color: red"> <%= flash[:notice]  %></p>
+  <% end %>
+  <% @posts.each do |p| %> <br>
+      <%= render 'post' ,p: p %>
+  <%end%>
+</div>
+<br>
 
+<%= form_tag("/posts/create", method: "post", :id => "customerpost") do %>
+    <%= text_area_tag(:post_content, params[:post_content] , id:  "post_content", :rows => 4,:cols => "90") %><br>
+    <%= submit_tag("Post") %>
+<% end %>
+
+
+<% if session[:customer_id]!=nil%>
+    <script type="text/javascript">
+        $('#customerpost').submit(function (e){
+            e.preventDefault()
+            action = '/posts/create'
+            comment= $('#post_content').val()
+            if($.trim(comment)) {
+                $.ajax({
+                    url: action,
+                    type: 'POST',
+                    data: {comment: comment}
+                })
+            }
+        });
+    </script>
+<% end %>

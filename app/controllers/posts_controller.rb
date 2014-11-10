@@ -1,10 +1,10 @@
 class PostsController < ApplicationController
 
-  before_filter :require_login,only: [:new]
+  before_filter :require_login,only: [:new, :create]
 
 
   def index
-   @posts=Post.all
+    @posts=Post.all
   end
 
   def new
@@ -12,20 +12,22 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post=Post.new(post_params)
+    @post=Post.new(customers_posts: params[:comment])
     @post.customer_id= session[:customer_id]
+    @post.save
 
-    if @post.save
-      redirect_to posts_list_path
-      #redirect_to show_posts_path(id: @post.id)
-    else
-      render "new"
+    respond_to do |format|
+      format.js
+      format.html
     end
+
   end
 
 
+
+
   def show
-  @post=Post.find(params[:id])
+    @post=Post.find(params[:id])
   end
 
   def destroy
@@ -38,11 +40,6 @@ class PostsController < ApplicationController
   def popup
 
   end
-
-  private
-   def post_params
-     params.require(:post).permit(:customers_posts)
-   end
 
 
   private

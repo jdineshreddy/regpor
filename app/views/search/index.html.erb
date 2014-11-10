@@ -1,17 +1,18 @@
-
+<%= link_to image_tag("h.jpg",  size: "80x80" ), logins_show_path  %>
 <%= form_tag search_index_path,:method => 'get',  :id => "customers_profiles_search" do %>
     <p>
       <%= text_field_tag :query, params[:query],placeholder: 'Firsh Name or Last Name', id: 'query' %>
-      <%= submit_tag "Search", :fname => nil%>
+      <%= submit_tag "Search",fname: nil %>
     </p>
 <% end %>
 
 
-<table>
+<table border="1" cellpadding="8" cellspacing="5">
   <thead>
   <tr>
-    <td><b>Fname</b></td>
-    <td><b>Lname</b></td>
+    <td id="td1"><button>order by Fname</button></td>
+    <td id="td2"><button>order by Lname</button></td>
+    <td id="td2">Date of Birth</td>
   </thead>
   <br>
   <tbody id="list_of_customers">
@@ -27,12 +28,28 @@
 <script type="text/javascript">
     $('#customers_profiles_search').submit(function (e){
         e.preventDefault()
-        action = $(this).attr('action');
+        action = '/search/index'
         query = $('#query').val()
         $.ajax({
             url: action,
             type: 'GET',
             data: {query: query}
-        });
+        })
     })
+
+    $('#td1').click(function(){
+        action = '/search/assen'
+        $.ajax({
+            url: action,
+            type: 'GET'
+        })
+    });
+
+    $('#td2').click(function(){
+        action = '/search/desen'
+        $.ajax({
+            url: action,
+            type: 'GET'
+        })
+    });
 </script>

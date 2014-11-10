@@ -9,4 +9,14 @@ class SearchController < ApplicationController
     end
   end
 
+  def assen
+    @customer = CustomersProfile.order(:fname)
+
+  end
+
+  def desen
+    @customer = CustomersProfile.order(:lname)
+
+  end
+
 end
