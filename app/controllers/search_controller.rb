@@ -11,12 +11,10 @@ class SearchController < ApplicationController
 
   def assen
     @customer = CustomersProfile.order(:fname)
-
   end
 
   def desen
     @customer = CustomersProfile.order(:lname)
-
   end
 
 end

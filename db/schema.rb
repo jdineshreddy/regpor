@@ -13,13 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20141103053143) do
 
-  create_table "countries_lists", force: true do |t|
-    t.string   "country_name"
-    t.string   "country_abbrev"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "customers", force: true do |t|
     t.string   "username"
     t.string   "email"
@@ -49,14 +42,6 @@ ActiveRecord::Schema.define(version: 20141103053143) do
     t.datetime "updated_at"
     t.integer  "customer_id"
     t.text     "customers_posts"
-  end
-
-  create_table "state_lists", force: true do |t|
-    t.string   "state_name"
-    t.string   "state_abbrev"
-    t.integer  "country_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
 end
