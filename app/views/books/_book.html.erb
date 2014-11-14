@@ -1,0 +1,35 @@
+
+<% if book.blank?  %>
+    <br>
+   <strong style="color: red">No Found</strong>
+
+<% else %>
+    <table >
+      <tr>
+        <% book.each do |b| %>
+            <td>
+              <table border="1" cellspacing="3" cellpadding="5">
+
+                <tr>
+                  <td style="color: rgba(255, 20, 7, 0.99)"><%= b.name.camelcase %></td>
+                </tr>
+                <tr>
+                  <% if b.image %>
+                      <td><%= image_tag(b.image.img.url(:thumb)) %></td>
+                  <% else %>
+                      <td>No Image</td>
+                  <% end %>
+                </tr>
+                <tr>
+                  <td style="background-color: #fff141"> By<name style="color: green"><%= b.author.name.camelcase  %></name> &nbsp;$<name style= "color: rgba(255, 20, 7, 0.99)"><%= b.price %></name></td>
+                </tr>
+                <tr>
+                  <td><%= link_to "Delete",  books_destroy_path(b.id) %> </td><br>
+                </tr>
+
+              </table></td><td></td><td></td>
+        <% end %>
+
+      </tr>
+    </table>
+<% end %>

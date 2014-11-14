@@ -1,0 +1,37 @@
+<%= link_to image_tag("h.jpg",  size: "60x60" ), logins_show_path  %><br xmlns="http://www.w3.org/1999/html">
+<% if flash[:notice] %>
+    <div class="'notice" style="color: red"><%=flash[:notice]%></div>
+<% end%><br>
+
+<%= form_tag book_path ,:method => 'get',  :id => "search_book"  do%>
+    <%= text_field_tag :query, params[:query],placeholder: 'Book Name', id: 'query' %>
+    <%= submit_tag "Search"%>
+<%end  %>
+
+<div id="list_of_books">
+
+  <%= render 'book',book: @books  %>
+
+</div>
+
+<br>
+
+<%= link_to "Add new book", new_book_path %><br>
+
+
+
+<script type="text/javascript">
+    $('#search_book').submit(function(e){
+        e.preventDefault()
+        action = '/books/show'
+        query = $('#query').val()
+        $.ajax({
+            url: action,
+            type: 'GET',
+            data: {query: query}
+        })
+    })
+
+</script>
+
+

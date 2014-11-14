@@ -12,7 +12,7 @@
 </div>
 <br>
 
-<%= form_tag("/posts/create", method: "post", :id => "customerpost") do %>
+<%= form_tag("/posts/create", method: "post", :id => "customerpost" ) do %>
     <%= text_area_tag(:post_content, params[:post_content] , id:  "post_content", :rows => 4,:cols => "90") %><br>
     <%= submit_tag("Post") %>
 <% end %>

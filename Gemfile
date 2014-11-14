@@ -39,6 +39,13 @@ gem 'country_select'
 
 gem 'rails4-autocomplete', '~> 1.1.1'
 
+gem 'carrierwave'
+gem "mini_magick"
+
+gem 'activeadmin', github: 'activeadmin'
+gem 'devise'
+
+gem "simple_calendar", "~> 1.1.0"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
