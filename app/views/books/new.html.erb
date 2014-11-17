@@ -6,8 +6,8 @@
 
     <%= f.fields_for :author do |a|  %>
         <%= a.hidden_field :book_id, :value => @book.id %>
-        <%= a.label :name, "Author name" %>
-        <%= a.text_field :name %><br>
+        <%= a.label :author_name, "Author name" %>
+        <%= a.text_field :author_name %><br>
     <% end %>
 
     <%= f.label :published_by, "Published by" %>

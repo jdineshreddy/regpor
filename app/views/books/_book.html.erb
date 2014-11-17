@@ -1,35 +1,64 @@
 
+<style>
+    #list_of_books ul li {
+
+        margin:10px 10px;
+    }
+
+   #list{
+       float: left;list-style:none
+   }
+    #fnt {
+        font-size: 13px;
+    }
+</style>
+
+
+
 <% if book.blank?  %>
     <br>
-   <strong style="color: red">No Found</strong>
+    <strong style="color: red">Not Found</strong>
 
 <% else %>
-    <table >
-      <tr>
-        <% book.each do |b| %>
-            <td>
-              <table border="1" cellspacing="3" cellpadding="5">
 
-                <tr>
-                  <td style="color: rgba(255, 20, 7, 0.99)"><%= b.name.camelcase %></td>
-                </tr>
-                <tr>
-                  <% if b.image %>
-                      <td><%= image_tag(b.image.img.url(:thumb)) %></td>
-                  <% else %>
-                      <td>No Image</td>
-                  <% end %>
-                </tr>
-                <tr>
-                  <td style="background-color: #fff141"> By<name style="color: green"><%= b.author.name.camelcase  %></name> &nbsp;$<name style= "color: rgba(255, 20, 7, 0.99)"><%= b.price %></name></td>
-                </tr>
-                <tr>
-                  <td><%= link_to "Delete",  books_destroy_path(b.id) %> </td><br>
-                </tr>
+    <ul>
 
-              </table></td><td></td><td></td>
-        <% end %>
+      <% book.each do |b| %>
 
-      </tr>
-    </table>
+
+          <li id="list" >
+            <table width="100%" border="1" cellspacing="3" cellpadding="5">
+
+              <tr>
+                <td style="color: rgba(255, 20, 7, 0.99)"><%= b.name.camelcase %></td>
+              </tr>
+              <tr>
+                <% if b.image %>
+                    <td><%= link_to image_tag(b.image.img.url(:thumb)),books_details_path(b.id) %></td>
+
+                <% else %>
+                    <td>No Image</td>
+                <% end %>
+              </tr>
+              <tr>
+                <td id="fnt" style="background-color: #fff141">By
+                  <name style="color: green">
+                    <%= link_to b.author.author_name.camelcase.first(8),author_details_path(name: b.author.author_name,id: b.id)  %>...
+                  </name>
+                  &nbsp;$<name style= "color: rgba(255, 20, 7, 0.99)"><%= b.price %></name></td>
+              </tr>
+              <tr>
+                <td><%= link_to "Delete",  books_destroy_path(b.id) %> </td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </tr>
+
+            </table>
+          </li>
+      <%end%>
+
+    </ul>
+
+
+
+
 <% end %>
+

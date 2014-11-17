@@ -9,6 +9,14 @@ class Customer < ActiveRecord::Base
   before_save :encrypt_password
 
 
+  validates :username,presence: true, length: {in: 3..14,message: 'Username already exists'}, uniqueness: true,
+            format: { with: /\A[a-zA-Z0-9]+\Z/, message: "allows only letters and number without any special characters and space" }
+  validates :email,uniqueness: true, format: { with: /\A[^@\s]+@([^@.\s]+\.)*[^@.\s]+\z/ }
+  validates :password, confirmation: true,length: {in: 6..14,message: 'atleast 6 characters'}
+  validates :password_confirmation, presence: true
+
+
+
   def encrypt_password
     if password.present?
       self.password_salt = BCrypt::Engine.generate_salt
@@ -37,11 +45,6 @@ class Customer < ActiveRecord::Base
     end while Customer.exists?(column => self[column])
   end
 
-  validates :username,presence: true, length: {in: 3..14,message: 'Username already exists'}, uniqueness: true,
-            format: { with: /\A[a-zA-Z0-9]+\Z/, message: "allows only letters and number without any special characters and space" }
-  validates :email,uniqueness: true, format: { with: /\A[^@\s]+@([^@.\s]+\.)*[^@.\s]+\z/ }
-  validates :password, confirmation: true,length: {in: 6..14,message: 'atleast 6 characters'}
-  validates :password_confirmation, presence: true
 end
 
 

@@ -1,0 +1,87 @@
+
+<style>
+    #list_of_books ul li {
+
+        margin:10px 10px;
+    }
+
+    #list{
+        float: left;list-style:none
+    }
+    #fnt {
+        font-size: 13px;
+    }
+    #bottom{
+        position:absolute;
+        bottom:0;
+        right:0;
+    }
+</style>
+
+
+
+<br>
+<table width="10%" border="1" cellspacing="3" cellpadding="5">
+
+  <tr>
+    <td style="color: rgba(255, 20, 7, 0.99)"><%= @this_book.book.name.camelcase %></td>
+  </tr>
+  <tr>
+        <td><%=  image_tag(@book_image.img.url(:thumb)) %></td>
+
+  </tr>
+  <tr>
+    <td id="fnt" style="background-color: #fff141">By
+      <name style="color: green">
+        <%= @this_book.author_name.camelcase  %>...
+      </name>
+      &nbsp;$<name style= "color: rgba(255, 20, 7, 0.99)"><%= @this_book.book.price %></name></td>
+  </tr>
+
+
+</table>
+<br>
+
+
+
+<hr>
+
+<% if @author.count >1  %>
+<h2 style="color: brown" > Other Books by
+<span style="color: blueviolet"> <%= @this_book.author_name.camelcase  %></span></h2>
+<div id="list_of_books">
+  <ul>
+
+    <% @author.each do |b| %>
+
+        <% unless b.book.id == @this_book.book.id %>
+
+            <li id="list" >
+              <table width="100%" border="1" cellspacing="3" cellpadding="5">
+
+                <tr>
+                  <td style="color: rgba(255, 20, 7, 0.99)"><%= b.book.name.camelcase %></td>
+                </tr>
+                <tr>
+                  <td><%= link_to image_tag(b.book.image.img.url(:thumb)), books_details_path(b.book.id) %></td>
+                </tr>
+                <tr>
+                  <td  style="background-color: #fff141">By
+                    <name style="color: green">
+                      <%=  b.author_name.camelcase.first(8)  %>
+                    </name>
+                    &nbsp;$<name style= "color: rgba(255, 20, 7, 0.99)"><%= b.book.price %></name></td>
+                </tr>
+
+              </table>
+            </li>
+        <% end %>
+
+    <%end%>
+
+  </ul>
+
+</div>
+
+<% end %>
+<div id="bottom"><%= link_to "Back", books_path %></div>

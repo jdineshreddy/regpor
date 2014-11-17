@@ -1,0 +1,87 @@
+
+<br>
+<style>
+    #list_of_books ul li {
+
+        margin:10px 10px;
+    }
+
+    #list{
+        float: left;list-style:none
+    }
+    #fnt {
+        font-size: 13px;
+    }
+    #bottom{
+        position:absolute;
+        bottom:0;
+        right:0;
+    }
+</style>
+
+
+<h1 style="color: coral" > Book Depot</h1>
+
+<table width="10%" border="1" cellspacing="3" cellpadding="5">
+
+  <tr>
+    <td style="color: rgba(255, 20, 7, 0.99)"><%= @book_details.name.camelcase %></td>
+  </tr>
+  <tr>
+    <td><%=  image_tag(@book_details.image.img.url(:thumb)) %></td>
+  </tr>
+  <tr>
+    <td  style="background-color: #fff141">By
+      <name style="color: green">
+        <%= @book_details.author.author_name.camelcase  %>
+      </name>
+      &nbsp;$<name style= "color: rgba(255, 20, 7, 0.99)"><%= @book_details.price %></name></td>
+  </tr>
+
+
+</table>
+<br>
+
+
+
+<hr>
+
+<% if @other_books.count >1  %>
+
+    <h2 style="color: blueviolet"> Related Books  </h2>
+    <div id="list_of_books">
+      <ul>
+
+        <% @other_books.each do |b| %>
+
+            <% unless b.id == @book_details.id %>
+
+                <li id="list" >
+                  <table width="100%" border="1" cellspacing="3" cellpadding="5">
+
+                    <tr>
+                      <td style="color: rgba(255, 20, 7, 0.99)"><%= b.name.camelcase %></td>
+                    </tr>
+                    <tr>
+                      <td><%= link_to  image_tag(b.image.img.url(:thumb)), books_details_path(b.id) %></td>
+                    </tr>
+                    <tr>
+                      <td id="fnt" style="background-color: #fff141">By
+                        <name style="color: green">
+                          <%= link_to  b.author.author_name.camelcase.first(8), author_details_path(name: b.author.author_name,id: b.id)  %>...
+                        </name>
+                        &nbsp;$<name style= "color: rgba(255, 20, 7, 0.99)"><%= b.price %></name></td>
+                    </tr>
+
+                  </table>
+                </li>
+            <% end %>
+
+        <%end%>
+
+      </ul>
+
+    </div>
+
+<% end %>
+<div id="bottom"><%= link_to "Back", books_path %></div>
