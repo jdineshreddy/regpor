@@ -8,6 +8,18 @@
 </head>
 <body>
 
+
+<div >
+<% if client_signed_in? %>
+Signed in as<span style="color: red"> <%= current_client.email  %></span> Not you?
+ <span style="color: red"> <%= link_to "Sign out", destroy_client_session_path, :method => :delete %>
+
+  <% else %>
+      <%= link_to "Sign up", new_client_registration_path %> or <%= link_to "sign in", new_client_session_path %></span>
+  <% end %>
+</div>
+
+
 <%= yield %>
 
 </body>

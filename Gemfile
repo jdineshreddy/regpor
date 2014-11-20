@@ -45,7 +45,11 @@ gem "mini_magick"
 gem 'activeadmin', github: 'activeadmin'
 gem 'devise'
 
+gem "hirb"
+
 gem "simple_calendar", "~> 1.1.0"
+
+gem 'devise'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
