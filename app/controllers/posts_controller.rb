@@ -13,7 +13,7 @@ class PostsController < ApplicationController
 
   def create
     @post=Post.new(customers_posts: params[:comment])
-    @post.customer_id= session[:customer_id]
+    @post.client_id= current_client.id
     @post.save
 
     respond_to do |format|
@@ -25,11 +25,11 @@ class PostsController < ApplicationController
 
 
   def show
-    @post=Post.find(params[:id])
+    @post=Post.find_by_client_id(current_client.id)
   end
 
   def destroy
-    @post=Post.find(params[:id])
+    @post=Post.find_by_client_id(current_client.id)
     @post.destroy
     redirect_to posts_list_path
   end
@@ -41,9 +41,10 @@ class PostsController < ApplicationController
 
   private
   def require_login
-    if session[:customer_id].nil?
-      flash[:error] = "You must be logged in to post your comments"
-      render 'popup' #template: "posts/popup"
+    if current_client.nil?
+      flash[:notice] = "You must be logged in to post your comments"
+      redirect_to new_client_session_path
+     #render template: '/clients/sign_in'
     end
   end
 

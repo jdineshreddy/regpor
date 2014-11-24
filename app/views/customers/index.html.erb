@@ -2,36 +2,72 @@
 <body>
 <style>
 
-  a {
-      text-decoration: none;
-      color: #ff1917;
-  }
-  body {
-     <!--> background-image: url('/assets/ideapic.gif');
-      background-repeat: no-repeat;
-      background-size: 100%;
-     -
-  }
+    a {
+        text-decoration: none;
+        color: #ff1917;
+    }
+    body {
+    <!--> background-image: url('/assets/ideapic.gif');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    -
+    }
 </style>
 </body>
 
 <head>
- <table width="100%">
+  <table width="100%">
 
-   <tr>
-     <td width="300"><h1 style="background: darkcyan; color: #fff643"   > &nbsp; ideas point &nbsp;</h1></td>
-     <% if session[:customer_id].nil? %>
-         <td align="right" width="0" > <%= link_to 'Signup', new_customer_path %> &nbsp;
-           <%= link_to 'Login', log_in_path%><br></td>
-     <% else %>
-         <%= link_to "Home", logins_show_path %>
-     <% end %>
-   </tr>
-   <tr>
-     <td><h2><%= link_to "Post Ideas ", posts_list_path%></h2></td>
-   </tr>
+    <tr>
+      <td width="300"><h1 style="background: darkcyan; color: #fff643"   > &nbsp; ideas point &nbsp;</h1></td>
 
- </table>
+    <tr>
+
+      <% if client_signed_in? %>
+          <td>
+           Signed in as <span style="color: mediumvioletred"><%= current_client.email  %> </span> if not  <%= link_to "Sign Out", destroy_client_session_path, :method => 'delete'  %> <br><br>
+            <%= link_to "Post list", posts_list_path %>&nbsp;
+
+            <%= link_to "Search", search_index_path %>&nbsp;
+
+            <%= link_to "Books", books_path %>
+          </td>
+          <div>
+            <%= link_to 'Profile',customers_profile_path  %>
+          </div>
+
+      <% else %>
+          <td>
+            <%= link_to "Clint signup", new_client_registration_path  %>
+          </td>
+          <td>
+            <%= link_to "Clint login", new_client_session_path  %>
+          </td>
+      <% end %>
+    </tr>
+
+
+
+<!--
+
+
+    <tr>
+      <% if session[:customer_id].nil? %>
+          <td align="right" width="0" > <%= link_to 'Signup', new_customer_path %> &nbsp;
+            <%= link_to 'Login', log_in_path%><br></td>
+      <% else %>
+          <%= link_to "Home", logins_show_path %>
+      <% end %>
+    </tr>
+
+-->
+
+<% if current_client.nil? %>
+    <tr>
+      <td><h2><%= link_to "Post Ideas ", posts_list_path%></h2></td>
+    </tr>
+<% end %>
+  </table>
 
 </head>
 

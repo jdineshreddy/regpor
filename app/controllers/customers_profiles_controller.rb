@@ -1,6 +1,6 @@
 class CustomersProfilesController < ApplicationController
 
-  before_action :set_customers_profile, only: [ :show,:edit, :update ]
+  before_action :set_customers_profile, only: [ :show,:edit,:update ]
 
   def index
 
@@ -23,7 +23,6 @@ class CustomersProfilesController < ApplicationController
       flash[:notice]='not Updated'
       redirect_to :back
     end
-
   end
 
 
@@ -35,7 +34,7 @@ class CustomersProfilesController < ApplicationController
 
   private
   def set_customers_profile
-    @customers_profile = CustomersProfile.find_by_customer_id(session[:customer_id])
+    @customers_profile=CustomersProfile.find_by_client_id(current_client.id)
   end
 
   def customers_profile_params

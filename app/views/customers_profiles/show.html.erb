@@ -62,7 +62,7 @@
   </tr>
   <tr>
     <td></td>
-    <td><%= link_to "Edit", edit_customers_profiles_path(session[:customer_id])%></td>
+    <td><%= link_to "Edit", edit_customers_profiles_path(current_client.id)%></td>
   </tr>
 
 
@@ -73,14 +73,14 @@
     <td><%= link_to "Change Password",logins_psword_change_for_login_customer_path%></td>
   </tr>
 </table>
-<br>
+<br><!--
 <table  border="0" style="border: 1px solid #2E2F30" cellpadding="4"  cellspacing="4">
   <tr>
-    <td><%= link_to "Deactivate",deactivate_customer_path(session[:customer_id]),data: { confirm: "Are you sure?" }%></td>
+    <td><%#= link_to "Deactivate",deactivate_customer_path(session[:customer_id]),data: { confirm: "Are you sure?" }%></td>
   </tr>
 </table>
 
 
 <br>
 
-<%= link_to "Back",  logins_show_path%>
+<%#= link_to "Back",  logins_show_path%>-->

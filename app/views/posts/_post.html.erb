@@ -1,11 +1,12 @@
 <table border="1" width="50%" cellpadding="5" cellspacing="8" >
   <tr>
     <td style="border: 0px">  <%= p.customers_posts %></td>
-    <% if session[:customer_id]==p.customer_id %>
+    <% if current_client.id==p.client_id %>
         <td style="width: 10%" > <%= link_to "Delete", posts_delete_path(p.id)%> </td>
     <% end %>
   </tr>
 </table>
-by <i style="color: #1d2fe2" > <%= p.customer.username%> </i>&nbsp; &nbsp;on <i style="color: #1d2fe2"> <%=p.created_at.strftime("%d %b. %Y")%> </i>&nbsp;
+
+by <i style="color: #1d2fe2" > <%= p.client.customers_profile.fname%> </i>&nbsp; &nbsp;on <i style="color: #1d2fe2"> <%=p.created_at.strftime("%d %b. %Y")%> </i>&nbsp;
 at <i style="color: #1d2fe2"> <%=  p.created_at.in_time_zone("Chennai").strftime("%H:%M:%S") %></i>
 <br><br>

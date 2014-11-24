@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141120075050) do
+ActiveRecord::Schema.define(version: 20141124052248) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -90,6 +90,8 @@ ActiveRecord::Schema.define(version: 20141120075050) do
     t.string   "password_reset_token"
   end
 
+  add_index "customers", ["email"], name: "index_customers_on_email", unique: true, using: :btree
+
   create_table "customers_profiles", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -102,6 +104,7 @@ ActiveRecord::Schema.define(version: 20141120075050) do
     t.integer  "customer_id"
     t.string   "country"
     t.string   "state"
+    t.integer  "client_id"
   end
 
   create_table "images", force: true do |t|
@@ -116,24 +119,7 @@ ActiveRecord::Schema.define(version: 20141120075050) do
     t.datetime "updated_at"
     t.integer  "customer_id"
     t.text     "customers_posts"
+    t.integer  "client_id"
   end
-
-  create_table "users", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end
