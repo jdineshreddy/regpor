@@ -20,7 +20,8 @@ class CustomersProfile < ActiveRecord::Base
       next if(p.id==self.id)
       if(self.fname == p.fname)
         if(self.lname == p.lname)
-          errors.add(:name, ": Another customer exists with same 'First Name' and 'Last Name' ")
+          # :field means, on the browser it displays Field. if you give name it displays Name, if you give address it displays Address
+          errors.add(:field, ": Another customer exists with same 'First Name' and 'Last Name' ")
         end
       end
     end
