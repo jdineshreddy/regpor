@@ -16,7 +16,7 @@ class CustomersProfilesController < ApplicationController
   end
 
   def update
-    if @customers_profile.update(customers_profile_params)
+    if @customers_profile.update!(customers_profile_params)
       flash[:notice]="Upadated"
       redirect_to @customers_profile
     else
